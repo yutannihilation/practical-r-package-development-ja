@@ -1,5 +1,5 @@
 --- 
-title: "Practical R Package Development（日本語）"
+title: "Practical R Package Development (Japanese)"
 author: "Hiroaki Yutani"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
