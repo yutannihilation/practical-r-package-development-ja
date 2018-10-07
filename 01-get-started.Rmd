@@ -54,7 +54,7 @@ knitr::include_graphics(
 * `NAMESPACE`
 
 `NAMESPACE`を消すのは、初期状態の`NAMESPACE`があるとRoxygenによる自動生成がはたらかないためだ（Roxygenは、既に存在している`NAMESPACE`がRoxygenで自動生成されたものでなければ上書きしない）。
-消した後で<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>でドキュメントを生成してみよう。
+消した後で<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>（Windowsの場合）でドキュメントを生成してみよう。
 すると、以下のような`NAMESPACE`ができているはずだ。
 
 ```r
@@ -67,7 +67,7 @@ knitr::include_graphics(
 ### コミット
 
 このあたりまでは間違いないが、次のステップでは色々なパターンがあるので間違えた場合に備えていったんコミットしておく。
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd>でコミット画面が開くので、全ファイルにチェックを入れ、「initial commit」のような適当なメッセージを入れて*Commit*を押す。
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd>（Windowsの場合）でコミット画面が開くので、全ファイルにチェックを入れ、「initial commit」のような適当なメッセージを入れて*Commit*を押す。
 
 ```{r git_commit, out.width = '75%', echo=FALSE}
 knitr::include_graphics("img/screenshot_git_commit.png")
