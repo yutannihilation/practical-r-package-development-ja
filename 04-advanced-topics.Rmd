@@ -1,0 +1,4 @@
+# その他
+
+## dynamic registeration of S3 method
+
