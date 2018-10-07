@@ -1,0 +1,5 @@
+book_filename: "practical-r-package-development-ja"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
