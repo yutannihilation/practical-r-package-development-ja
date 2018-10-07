@@ -23,3 +23,7 @@ Rのパッケージ開発には様々な方法があるが、本書では
 * GitHub
 
 を用いる場合について考える。場合によってはEmacsの場合についても触れることもある。
+
+## Contribution
+
+疑問、質問、提案などあれば[GitHub](https://github.com/yutannihilation/practical-r-package-development-ja/issues)もしくは[Twitter](https://twitter.com/yutannihilation)へ。
