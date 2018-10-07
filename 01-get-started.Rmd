@@ -47,13 +47,13 @@ knitr::include_graphics(
 
 ## 不要なファイルを消す
 
-初期状態では`hello.R`みたいなファイルが見本として置かれているが、不要なので消す。具体的には以下の3つのファイルだ。
+初期状態では`hello.R`みたいなファイルが見本として置かれているが、不要なので消す。具体的には以下の3つ。
 
 * `R/hello.R`
 * `man/hello.Rd`
 * `NAMESPACE`
 
-`NAMESPACE`を消すのは、初期状態の`NAMESPACE`があるとRoxygenによる自動生成がはたらかないためだ（Roxygen以外によってつくられた`NAMESPACE`の場合は上書きしない）。
+`NAMESPACE`を消すのは、初期状態の`NAMESPACE`があるとRoxygenによる自動生成がはたらかないためだ（Roxygenは、既に存在している`NAMESPACE`がRoxygenで自動生成されたものでなければ上書きしない）。
 消した後で<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>でドキュメントを生成してみよう。
 すると、以下のような`NAMESPACE`ができているはずだ。
 
