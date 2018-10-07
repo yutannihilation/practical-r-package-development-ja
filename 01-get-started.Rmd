@@ -207,12 +207,12 @@ usethis::use_appveyor()
 
 ```
 Copying code to clipboard:
-  [![Travis build status](https://travis-ci.org/yutannihilation/roygvib.svg?branch=master)](https://travis-ci.org/yutannihilation/roygvib)
+  [![Travis build status](https://travis-ci.org/yutannihilation/roygbiv.svg?branch=master)](https://travis-ci.org/yutannihilation/roygbiv)
 ```
 
 ```
 Copying code to clipboard:
-  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/yutannihilation/roygvib?branch=master&svg=true)](https://ci.appveyor.com/project/yutannihilation/roygvib)
+  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/yutannihilation/roygbiv?branch=master&svg=true)](https://ci.appveyor.com/project/yutannihilation/roygbiv)
 ```
 
 ### `NEWS.md`
@@ -222,5 +222,3 @@ Copying code to clipboard:
 ```{r eval=FALSE}
 usethis::use_news_md()
 ```
-
-
