@@ -4,6 +4,74 @@
 
 ## Rcpp
 
+## C
+
+「Advanced R」のCの関数についての章はまだ第二版にはないのでひとまず第一版を参照。
+
+* [R's C interface](https://adv-r.had.co.nz/C-interface.html)
+
+### ヘッダファイル
+
+Cの関数を使えるようにするには以下のヘッダをincludeする。
+
+```c
+#include <R.h>
+#include <Rinternals.h>
+```
+
+#### `R_NO_REMAP`
+
+[R Internals（Hadley版の方）](https://github.com/hadley/r-internals/blob/cca966e7eaaf7758b13901f8a90b67acc0f789e2/README.md#r-internals)によると、
+
+> we recommend that you use `R_NO_REMAP` so all API functions have the prefix `R_` or `Rf_`
+
+とあるが、これをdefineすると`allocVector()`や`asReal()`のような関数も動かなくなってしまうので注意。
+
+#### `USE_RINTERNALS`
+
+[R Internals（公式）](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#The-write-barrier)によれば、
+
+> The only way to obtain direct access to the internals of the `SEXPREC`s is to define `'USE_RINTERNALS'` before including header file `Rinternals.h`,
+
+とある。rlangとかdplyrでも使ってないので、たぶん必要になることはなさそう。
+
+### 関数の登録
+
+Rcppと違って、Cの関数は自分で登録しないといけない。具体的には、`init.c`みたいなやつを作って以下を書く。
+例えば`SEXP foo(SEXP, SEXP);`というCの関数を別ファイルで定義しているとすると、以下のようになる。
+
+なお、`R_registerRoutines()`あたりについては、R 3.4以降のことなのでAdvanced R第1版にも載っていない。
+[Registering Routines with Rcpp](https://ironholds.org/registering-routines/)あたりを参考のこと（うまく説明できない）。
+
+```c
+#include "./foo.h"
+
+// TODO: これはincludeしなくてもコンパイルできたので要らないのかも
+#include <R_ext/Rdynload.h>
+
+// 同名・同じシグネチャの関数をexternで定義する
+extern SEXP foo(SEXP, SEXP);
+
+// R_registerRoutines()で関数を登録するためのエントリ
+static const R_CallMethodDef CallEntries[] = {
+  {"foo", (DL_FUNC) &foo, 2},  // 最後の数字は引数の数
+  {NULL, NULL, 0}              // 最後にこのNULLのエントリを入れるのがお作法っぽい
+};
+
+// 関数名はR_init_<DLL名>にする。<DLL名>は@useDynLibに指定するもの
+void R_init_foo(DllInfo *dll) {
+  R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+  R_useDynamicSymbols(dll, FALSE);
+}
+```
+
+あと、Rの側では、以下のように`@useDynLib`を指定しておく必要がある。
+
+```r
+#' @useDynLib foo, .registration = TRUE
+```
+
+
 ## ALTREP
 
 ## Apache Arrow
