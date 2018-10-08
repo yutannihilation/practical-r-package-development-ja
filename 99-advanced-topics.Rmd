@@ -1,6 +1,10 @@
-# その他
+# （未着手）その他
 
 ## dynamic registeration of S3 method
 
+## Rcpp
+
 ## ALTREP
+
+## Apache Arrow
 

@@ -1,4 +1,4 @@
-# CIを使う
+# （未着手）CIを使う
 
 ## Travis CI
 
@@ -8,3 +8,8 @@
 
 ## CircleCI
 
+* https://yutani.rbind.io/post/2017-10-18-circleci/
+
+## tic
+
+* https://ropenscilabs.github.io/tic/

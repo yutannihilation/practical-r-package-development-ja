@@ -1,0 +1,12 @@
+# （未着手）テスト
+
+## mockery
+
+* https://cran.r-project.org/web/packages/mockery/vignettes/mocks-and-testthat.html
+
+## vdiffr
+
+* https://github.com/lionel-/vdiffr
+
+## CI上では動かないテスト
+
