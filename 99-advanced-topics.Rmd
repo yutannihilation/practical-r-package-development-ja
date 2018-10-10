@@ -76,9 +76,9 @@ void R_init_foo(DllInfo *dll) {
 
 ### C++でALTREPを使う
 
-`<R_ext/Altrep.h>`はR 3.5.xの時点ではC++に対応していない。r-develでの指摘^[https://stat.ethz.ch/pipermail/r-devel/2018-October/076952.html]を受けて修正が入った^[https://github.com/wch/r-source/commit/14365e4419d08ced8e987d5d49b26843d1324297]のでR 3.6.0以降で使うには問題ない。
+`<R_ext/Altrep.h>`はR 3.5.xの時点ではC++に対応していない。r-develでの指摘^[https://stat.ethz.ch/pipermail/r-devel/2018-October/076952.html] を受けて修正が入った^[https://github.com/wch/r-source/commit/14365e4419d08ced8e987d5d49b26843d1324297] のでR 3.6.0以降で使うには問題ない。
 
-Romain Francois氏によれば、以下のようにすればいいらしい^[https://stat.ethz.ch/pipermail/r-devel/2018-October/076963.html]^[具体例： https://github.com/romainfrancois/altrepisode/blob/96af0548a9ecc08701d119ea427e16940a82882b/src/altrepisode.h]
+Romain François氏によれば、以下のようにすればいいらしい^[https://stat.ethz.ch/pipermail/r-devel/2018-October/076963.html]。
 
 ```cpp
 #if R_VERSION < R_Version(3, 6, 0)
@@ -91,6 +91,11 @@ Romain Francois氏によれば、以下のようにすればいいらしい^[htt
   #include <R_ext/Altrep.h>
 #endif
 ```
+
+より長いバージョンは以下のレポジトリを参照。
+
+* https://github.com/romainfrancois/altrepisode/blob/96af0548a9ecc08701d119ea427e16940a82882b/src/altrepisode.h
+
 
 ## Apache Arrow
 
