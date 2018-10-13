@@ -1,4 +1,71 @@
-# （未着手）その他
+# その他
+
+## パッケージ内で日本語を使う
+
+Rのパッケージに非ASCII文字を含めることは推奨されない。だが可能だ。
+
+具体的には、`DESCRIPTION`に`Encoding`を指定しつつ、
+
+1. `\uXXXX`のエスケープを使う
+2. データに含める
+3. メッセージ翻訳の仕組みを使う
+
+のいずれかの手を使う。
+
+### `DESCRIPTION`
+
+`Encoding`フィールドに`UTF-8`を指定する。これはおそらくいずれの手を使うにしても必要なはず。
+
+```
+Encoding: UTF-8
+```
+
+あと、[Writing R Extensions](http://www.hep.by/gnu/r-patched/r-exts/R-exts_35.html)によると、厳密には、
+
+```
+Depends:
+  R (>= 2.10)
+```
+
+も指定しないといけないらしい。
+
+### `\uXXXX`のエスケープを使う
+
+これがR Packagesが推奨している方法^[http://r-pkgs.had.co.nz/r.html#r-cran]。
+`stringi::stri_escape_unicode()`を使うとエスケープされた文字列を知ることができる。たとえば、「あ」という文字列を使いたいなら、
+
+```{r stringi}
+cat(stringi::stri_escape_unicode("あ"))
+```
+
+ということで、`"あ"`の代わりに`"\u3042"`と書けばいい。UTF-8になっているので、デフォルトの文字コードと合わせたいなら`enc2native()`する必要がある点に注意。
+
+### データに含める
+
+UTF-8にした文字列をデータとしてパッケージに含める、という手もある。
+ただし、これは最近、CRAN checkの結果に
+
+```
+Result: NOTE
+     Note: found 52458 marked UTF-8 strings 
+```
+
+という表示が出るのが気になる。いずれ使えなくなる？
+
+### メッセージの翻訳の仕組みを使う
+
+あまり使われているのを見かけないが、Rにはメッセージの翻訳の仕組みがある^[[DYMパッケージ](https://github.com/kos59125/DYM)はこの仕組みを使っている]。
+日本語を含めたい理由がメッセージを表示させるためであれば、これを使う手もある。具体的には、以下の流れになる。
+
+1. `tools::update_pkg_po(".")`を実行する。ソースコード中の`stop()`、`warning()`、`message()`のメッセージを読み取って`po/R-パッケージ名.pot`というメッセージ翻訳のテンプレートができる。
+2. テンプレートファイルをコピーして`po/R-ja.po`（または`po/ja.po`）というファイルをつくる。
+3. `inst`下にインストールする^[http://www.hep.by/gnu/r-patched/r-exts/R-exts_41.html]。Windowsの場合あらかじめ`gettext`のインストールが必要^[ https://www.stats.ox.ac.uk/pub/Rtools/goodies/gettext-tools.zip から入手できる]。
+```sh
+mkdir -p inst/po/ja/LC_MESSAGES
+msgfmt -c --statistics -o inst/po/ll/LC_MESSAGES/R-パッケージ名.mo po/R-ja.po
+```
+
+なお、翻訳の仕組みを使う場合、`stop()`等には`domain = "R-パッケージ名"`を指定しておいた方が無難。
 
 ## dynamic registeration of S3 method
 
