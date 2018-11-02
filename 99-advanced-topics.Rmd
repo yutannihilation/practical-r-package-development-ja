@@ -59,10 +59,10 @@ Result: NOTE
 
 1. `tools::update_pkg_po(".")`を実行する。ソースコード中の`stop()`、`warning()`、`message()`のメッセージを読み取って`po/R-パッケージ名.pot`というメッセージ翻訳のテンプレートができる。
 2. テンプレートファイルをコピーして`po/R-ja.po`（または`po/ja.po`）というファイルをつくる。
-3. `inst`下にインストールする^[http://www.hep.by/gnu/r-patched/r-exts/R-exts_41.html] 。Windowsの場合あらかじめ`gettext`のインストールが必要^[ https://www.stats.ox.ac.uk/pub/Rtools/goodies/gettext-tools.zip から入手できる] 。
+3. `inst`下にインストールする^[http://www.hep.by/gnu/r-patched/r-exts/R-exts_41.html] 。Windowsの場合あらかじめ`gettext`のインストールが必要^[ https://www.stats.ox.ac.uk/pub/Rtools/goodies/gettext-tools.zip を`C:\Rtools\bin`以下に展開すればいい] 。
 ```sh
 mkdir -p inst/po/ja/LC_MESSAGES
-msgfmt -c --statistics -o inst/po/ll/LC_MESSAGES/R-パッケージ名.mo po/R-ja.po
+msgfmt -c --statistics -o inst/po/ja/LC_MESSAGES/R-パッケージ名.mo po/R-ja.po
 ```
 
 なお、翻訳の仕組みを使う場合、`stop()`等には`domain = "R-パッケージ名"`を指定しておいた方が無難。
