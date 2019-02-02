@@ -62,6 +62,8 @@ knitr::include_graphics(
 
 ```
 
+`usethis::use_namespace()`で上書きしてもいい。
+
 ## Git
 
 ### コミット
